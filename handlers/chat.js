@@ -161,6 +161,8 @@ var onChatMessage = function onChatMessage(message) {
     /* Chat channel message from another user. */
     var chatData = Dota2.schema.CMsgDOTAChatMessage.decode(message);
     var channel = this._getChannelById(chatData.channel_id);
+    
+    channel = channel || {}; // patch
 
     if (this.debug) util.log("Received chat message from " + chatData.persona_name + " in channel " + channel.channel_name);
     this.emit("chatMessage",
